@@ -1,0 +1,22 @@
+PROJECT(ustk_sample)
+
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+
+FIND_PACKAGE(VISP REQUIRED)
+IF(VISP_FOUND)
+	include_directories(${VISP_INCLUDE_DIRS})
+	include_directories(${USTK_INCLUDE_DIR})	
+ENDIF(VISP_FOUND)
+
+ADD_EXECUTABLE(usImagePreScan2DSample usImagePreScan2DSample.cpp)
+ADD_EXECUTABLE(usImagePostScan2DSample usImagePostScan2DSample.cpp)
+ADD_EXECUTABLE(usImageRF2DSample usImageRF2DSample.cpp)
+ADD_EXECUTABLE(usImagePreScan3DSample usImagePreScan3DSample.cpp)
+ADD_EXECUTABLE(usImagePostScan3DSample usImagePostScan3DSample.cpp)
+ADD_EXECUTABLE(usImageRF3DSample usImageRF3DSample.cpp)
+target_link_libraries(usImagePreScan2DSample visp_core visp_io visp_ustk_core)
+target_link_libraries(usImagePostScan2DSample visp_core visp_io visp_ustk_core)
+target_link_libraries(usImageRF2DSample visp_core visp_io visp_ustk_core)
+target_link_libraries(usImagePreScan3DSample visp_core visp_io visp_ustk_core)
+target_link_libraries(usImagePostScan3DSample visp_core visp_io visp_ustk_core)
+target_link_libraries(usImageRF3DSample visp_core visp_io visp_ustk_core)
