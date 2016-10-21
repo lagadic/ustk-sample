@@ -27,3 +27,6 @@
 *.exe
 *.out
 *.app
+
+# Cmake settings file written by Qt Creator
+CMakeLists.txt.user*

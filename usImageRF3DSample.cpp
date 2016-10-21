@@ -34,19 +34,21 @@
     int main()
     {
       // Update settings
-      unsigned int AN = 200;
-      unsigned int LN = 200;
-      unsigned int FN = 30;
+      unsigned int RFSampleNumber = 200;
+      unsigned int lineNumber = 200;
+      unsigned int frameNumber = 30;
       double probeRadius = 0.0006;
       double scanLinePitch = 0.0007;
       bool isProbeConvex = true;
       double motorRadius = 0.004;
       double framePitch = 0.06;
-      bool isMotorConvex = true;
+      usMotorSettings::usMotorType motorType = usMotorSettings::LinearMotor;
       double axialResolution = 0.001;
-      usImagePreScan3DSettings  imageSettings(probeRadius, scanLinePitch, isProbeConvex, motorRadius, framePitch, isMotorConvex, axialResolution);
-      usImage3D<unsigned char> I(AN, LN, FN);
+      usImagePreScanSettings  imageSettings(probeRadius, scanLinePitch, isProbeConvex, axialResolution);
+      usMotorSettings motorSettings(motorRadius,framePitch,motorType);
+      usImage3D<unsigned char> I(RFSampleNumber, lineNumber, frameNumber);
       usImageRF3D<unsigned char> rf3d;
       rf3d.setData(I);
       rf3d.setImageSettings(imageSettings);
+      rf3d.setMotorSettings(motorSettings);
     }

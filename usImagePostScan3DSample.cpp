@@ -36,20 +36,22 @@
     int main()
     {
       // Update settings
-      unsigned int AN = 200;
-      unsigned int LN = 200;
-      unsigned int FN = 20;
+      unsigned int dimX = 200;
+      unsigned int dimY = 200;
+      unsigned int dimZ = 20;
       double probeRadius = 0.045;
       double scanLinePitch = 0.01;
-      bool isProbeConvex = true;
+      bool isTransducerConvex = true;
       double motorRadius = 0.07;
       double framePitch = 0.05;
-      bool isMotorConvex = true;
+      usMotorSettings::usMotorType motorType = usMotorSettings::LinearMotor;
       double heightResolution = 0.004;
       double widthResolution = 0.007;
-      usImagePostScan3DSettings   imageSettings(probeRadius, scanLinePitch, isProbeConvex, motorRadius, framePitch, isMotorConvex, heightResolution, widthResolution);
-      usImage3D<unsigned char> I(AN, LN, FN);
+      usImagePostScanSettings   imageSettings(probeRadius, scanLinePitch, isTransducerConvex, heightResolution, widthResolution);
+      usMotorSettings motorSettings(motorRadius,framePitch,motorType);
+      usImage3D<unsigned char> I(dimX, dimY, dimZ);
       usImagePostScan3D<unsigned char> postScan3d;
       postScan3d.setData(I);
       postScan3d.setImageSettings(imageSettings);
+      postScan3d.setMotorSettings(motorSettings);
     }
