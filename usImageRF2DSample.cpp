@@ -35,14 +35,14 @@
     int main()
     {
       // Update settings
-      unsigned int lineNumber = 200;
+      unsigned int scanLineNumber = 200;
       unsigned int RFSampleNumber = 200;
       double probeRadius = 0.007;
       double scanLinePitch = 0.0006;
-      bool isProbeConvex = true;
+      bool isTransducerConvex = true;
       double axialResolution = 0.002;
-      usImagePreScanSettings imageSettings(probeRadius, scanLinePitch, isProbeConvex, axialResolution);
-      vpImage<unsigned char> I(RFSampleNumber, lineNumber);
+      usImagePreScanSettings imageSettings(probeRadius, scanLinePitch, isTransducerConvex, axialResolution);
+      vpImage<unsigned char> I(RFSampleNumber, scanLineNumber);
       usImageRF2D<unsigned char> rf2d;
       rf2d.setData(I);
       rf2d.setImageSettings(imageSettings);

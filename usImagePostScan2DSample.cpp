@@ -37,10 +37,10 @@
       unsigned int dimY = 200;
       double probeRadius = 0.045;
       double scanLinePitch = 0.0012;
-      bool isProbeConvex = true;
+      bool isTransducerConvex = true;
       double heightResolution = 0.002;
       double widthResolution = 0.004;
-      usImagePostScanSettings imageSettings(probeRadius, scanLinePitch, isProbeConvex, heightResolution, widthResolution);
+      usImagePostScanSettings imageSettings(probeRadius, scanLinePitch, isTransducerConvex, heightResolution, widthResolution);
       vpImage<unsigned char> I(dimY,dimX);
       usImagePostScan2D<unsigned char> postScan2d;
       postScan2d.setData(I);

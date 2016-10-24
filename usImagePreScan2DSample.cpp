@@ -34,14 +34,14 @@
     int main()
     {
       // Update settings
-      unsigned int lineNumber = 200;
+      unsigned int scanLineNumber = 200;
       unsigned int BModeSampleNumber = 200;
       double probeRadius = 0.06;
       double scanLinePitch = 0.04;
-      bool isProbeConvex = true;
+      bool isTransducerConvex = true;
       double axialResolution = 0.005;
-      usImagePreScanSettings imageSettings(probeRadius, scanLinePitch, isProbeConvex, axialResolution);
-      vpImage<unsigned char> I(BModeSampleNumber,lineNumber);
+      usImagePreScanSettings imageSettings(probeRadius, scanLinePitch, isTransducerConvex, axialResolution);
+      vpImage<unsigned char> I(BModeSampleNumber, scanLineNumber);
       usImagePreScan2D<unsigned char> preScan2d;
       preScan2d.setData(I);
       preScan2d.setImageSettings(imageSettings);
