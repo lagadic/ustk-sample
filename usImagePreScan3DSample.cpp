@@ -30,26 +30,41 @@
 *
 *****************************************************************************/
 
-    #include <visp3/ustk_core/usImagePreScan3D.h>
+#include <visp3/ustk_core/usImagePreScan3D.h>
 
-    int main()
-    {
-      // Update settings
-      unsigned int BModeSampleNumber = 200;
-      unsigned int scanLineNumber = 200;
-      unsigned int frameNumber = 10;
-      double probeRadius = 0.008;
-      double scanLinePitch = 0.004;
-      bool isTransducerConvex = true;
-      double motorRadius = 0.0008;
-      double framePitch = 0.05;
-      usMotorSettings::usMotorType motorType = usMotorSettings::LinearMotor;
-      double axialResolution = 0.004;
-      usImagePreScanSettings   imageSettings(probeRadius, scanLinePitch, isTransducerConvex, axialResolution);
-      usMotorSettings motorSettings(motorRadius,framePitch,motorType);
-      usImage3D<unsigned char> I(BModeSampleNumber, scanLineNumber, frameNumber);
-      usImagePreScan3D<unsigned char> preScan3d;
-      preScan3d.setData(I);
-      preScan3d.setImageSettings(imageSettings);
-      preScan3d.setMotorSettings(motorSettings);
-    }
+int main()
+{
+  // Pre-scan image settings
+  unsigned int BModeSampleNumber = 200;
+  double transducerRadius = 0.008;
+  double scanLinePitch = 0.004;
+  unsigned int scanLineNumber = 256;
+  bool isTransducerConvex = true;
+  double axialResolution = 0.001;
+
+  // Motor settings
+  double motorRadius = 0.004;
+  double framePitch = 0.06;
+  unsigned int frameNumber = 10;
+  usMotorSettings::usMotorType motorType = usMotorSettings::LinearMotor;
+
+  usImagePreScanSettings imagePreScanSettings;
+  imagePreScanSettings.setTransducerRadius(transducerRadius);
+  imagePreScanSettings.setScanLinePitch(scanLinePitch);
+  imagePreScanSettings.setScanLineNumber(scanLineNumber);
+  imagePreScanSettings.setTransducerConvexity(isTransducerConvex);
+  imagePreScanSettings.setAxialResolution(axialResolution);
+
+  usMotorSettings motorSettings;
+  motorSettings.setMotorRadius(motorRadius);
+  motorSettings.setFramePitch(framePitch);
+  motorSettings.setFrameNumber(frameNumber);
+  motorSettings.setMotorType(motorType);
+
+  usImage3D<unsigned char> I(BModeSampleNumber, scanLineNumber, frameNumber);
+
+  usImagePreScan3D<unsigned char> preScan3d;
+  preScan3d.setData(I);
+  preScan3d.setImagePreScanSettings(imagePreScanSettings);
+  preScan3d.setMotorSettings(motorSettings);
+}

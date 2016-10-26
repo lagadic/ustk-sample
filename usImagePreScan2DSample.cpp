@@ -29,20 +29,24 @@
  *
  *****************************************************************************/
 
-    #include <visp3/ustk_core/usImagePreScan2D.h>
+#include <visp3/ustk_core/usImagePreScan2D.h>
 
-    int main()
-    {
-      // Update settings
-      unsigned int scanLineNumber = 200;
-      unsigned int BModeSampleNumber = 200;
-      double probeRadius = 0.06;
-      double scanLinePitch = 0.04;
-      bool isTransducerConvex = true;
-      double axialResolution = 0.005;
-      usImagePreScanSettings imageSettings(probeRadius, scanLinePitch, isTransducerConvex, axialResolution);
-      vpImage<unsigned char> I(BModeSampleNumber, scanLineNumber);
-      usImagePreScan2D<unsigned char> preScan2d;
-      preScan2d.setData(I);
-      preScan2d.setImageSettings(imageSettings);
-    }
+int main()
+{
+  // 2D pre-scan image settings
+  unsigned int BModeSampleNumber = 200;
+  double transducerRadius = 0.007;
+  double scanLinePitch = 0.04;
+  unsigned int scanLineNumber = 256;
+  bool isTransducerConvex = true;
+  double axialResolution = 0.005;
+
+  vpImage<unsigned char> I(BModeSampleNumber, scanLineNumber);
+  usImagePreScan2D<unsigned char> preScan2d;
+  preScan2d.setTransducerRadius(transducerRadius);
+  preScan2d.setScanLinePitch(scanLinePitch);
+  preScan2d.setScanLineNumber(scanLineNumber);
+  preScan2d.setTransducerConvexity(isTransducerConvex);
+  preScan2d.setAxialResolution(axialResolution);
+  preScan2d.setData(I);
+}

@@ -28,21 +28,26 @@
  * Marc Pouliquen
  *
  *****************************************************************************/
-    #include <visp3/ustk_core/usImagePostScan2D.h>
 
-    int main()
-    {
-      // Update settings
-      unsigned int dimX = 200;
-      unsigned int dimY = 200;
-      double probeRadius = 0.045;
-      double scanLinePitch = 0.0012;
-      bool isTransducerConvex = true;
-      double heightResolution = 0.002;
-      double widthResolution = 0.004;
-      usImagePostScanSettings imageSettings(probeRadius, scanLinePitch, isTransducerConvex, heightResolution, widthResolution);
-      vpImage<unsigned char> I(dimY,dimX);
-      usImagePostScan2D<unsigned char> postScan2d;
-      postScan2d.setData(I);
-      postScan2d.setImageSettings(imageSettings);
-    }
+#include <visp3/ustk_core/usImagePostScan2D.h>
+
+int main()
+{
+  // 2D post-scan image settings
+  unsigned int width = 320;
+  unsigned int height = 240;
+  double transducerRadius = 0.045;
+  double scanLinePitch = 0.0012;
+  unsigned int scanLineNumber = 256;
+  bool isTransducerConvex = true;
+  double heightResolution = 0.002;
+  double widthResolution = 0.004;
+
+  vpImage<unsigned char> I(height, width);
+  usImagePostScan2D<unsigned char> postScan2d;
+  postScan2d.setTransducerRadius(transducerRadius);
+  postScan2d.setScanLinePitch(scanLinePitch);
+  postScan2d.setScanLineNumber(scanLineNumber);
+  postScan2d.setTransducerConvexity(isTransducerConvex);
+  postScan2d.setData(I);
+}

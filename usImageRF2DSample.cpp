@@ -30,20 +30,24 @@
  *****************************************************************************/
 
 
-    #include <visp3/ustk_core/usImageRF2D.h>
+#include <visp3/ustk_core/usImageRF2D.h>
 
-    int main()
-    {
-      // Update settings
-      unsigned int scanLineNumber = 200;
-      unsigned int RFSampleNumber = 200;
-      double probeRadius = 0.007;
-      double scanLinePitch = 0.0006;
-      bool isTransducerConvex = true;
-      double axialResolution = 0.002;
-      usImagePreScanSettings imageSettings(probeRadius, scanLinePitch, isTransducerConvex, axialResolution);
-      vpImage<unsigned char> I(RFSampleNumber, scanLineNumber);
-      usImageRF2D<unsigned char> rf2d;
-      rf2d.setData(I);
-      rf2d.setImageSettings(imageSettings);
-    }
+int main()
+{
+  // 2D RF image settings
+  unsigned int RFSampleNumber = 200;
+  double transducerRadius = 0.007;
+  double scanLinePitch = 0.0006;
+  unsigned int scanLineNumber = 256;
+  bool isTransducerConvex = true;
+  double axialResolution = 0.002;
+
+  vpImage<unsigned char> I(RFSampleNumber, scanLineNumber);
+  usImageRF2D<unsigned char> rf2d;
+  rf2d.setTransducerRadius(transducerRadius);
+  rf2d.setScanLinePitch(scanLinePitch);
+  rf2d.setScanLineNumber(scanLineNumber);
+  rf2d.setTransducerConvexity(isTransducerConvex);
+  rf2d.setAxialResolution(axialResolution);
+  rf2d.setData(I);
+}

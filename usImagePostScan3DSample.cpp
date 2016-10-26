@@ -31,27 +31,45 @@
 
 
 
-    #include <visp3/ustk_core/usImagePostScan3D.h>
+#include <visp3/ustk_core/usImagePostScan3D.h>
 
-    int main()
-    {
-      // Update settings
-      unsigned int dimX = 200;
-      unsigned int dimY = 200;
-      unsigned int dimZ = 20;
-      double probeRadius = 0.045;
-      double scanLinePitch = 0.01;
-      bool isTransducerConvex = true;
-      double motorRadius = 0.07;
-      double framePitch = 0.05;
-      usMotorSettings::usMotorType motorType = usMotorSettings::LinearMotor;
-      double heightResolution = 0.004;
-      double widthResolution = 0.007;
-      usImagePostScanSettings   imageSettings(probeRadius, scanLinePitch, isTransducerConvex, heightResolution, widthResolution);
-      usMotorSettings motorSettings(motorRadius,framePitch,motorType);
-      usImage3D<unsigned char> I(dimX, dimY, dimZ);
-      usImagePostScan3D<unsigned char> postScan3d;
-      postScan3d.setData(I);
-      postScan3d.setImageSettings(imageSettings);
-      postScan3d.setMotorSettings(motorSettings);
-    }
+int main()
+{
+  // Transducer settings
+  unsigned int BModeSampleNumber = 200;
+  double transducerRadius = 0.045;;
+  double scanLinePitch = 0.01;
+  unsigned int scanLineNumber = 256;
+  bool isTransducerConvex = true;
+  double axialResolution = 0.001;
+
+  // Motor settings
+  double motorRadius = 0.004;
+  double framePitch = 0.06;
+  unsigned int frameNumber = 10;
+  usMotorSettings::usMotorType motorType = usMotorSettings::LinearMotor;
+
+  // Post-scan data settings
+  unsigned int dimX = 200;
+  unsigned int dimY = 200;
+  unsigned int dimZ = 20;
+
+  usTransducerSettings transducerSettings;
+  transducerSettings.setTransducerRadius(transducerRadius);
+  transducerSettings.setScanLinePitch(scanLinePitch);
+  transducerSettings.setScanLineNumber(scanLineNumber);
+  transducerSettings.setTransducerConvexity(isTransducerConvex);
+
+  usMotorSettings motorSettings;
+  motorSettings.setMotorRadius(motorRadius);
+  motorSettings.setFramePitch(framePitch);
+  motorSettings.setFrameNumber(frameNumber);
+  motorSettings.setMotorType(motorType);
+
+  usImage3D<unsigned char> I(dimX, dimY, dimZ);
+
+  usImagePostScan3D<unsigned char> postScan3d;
+  postScan3d.setData(I);
+  postScan3d.setTransducerSettings(transducerSettings);
+  postScan3d.setMotorSettings(motorSettings);
+}
