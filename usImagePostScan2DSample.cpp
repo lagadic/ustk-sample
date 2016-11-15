@@ -40,8 +40,8 @@ int main()
   double scanLinePitch = 0.0012;
   unsigned int scanLineNumber = 256;
   bool isTransducerConvex = true;
+  double widthResolution = 0.002;
   double heightResolution = 0.002;
-  double widthResolution = 0.004;
 
   vpImage<unsigned char> I(height, width);
   usImagePostScan2D<unsigned char> postScan2d;
@@ -49,5 +49,7 @@ int main()
   postScan2d.setScanLinePitch(scanLinePitch);
   postScan2d.setScanLineNumber(scanLineNumber);
   postScan2d.setTransducerConvexity(isTransducerConvex);
+  postScan2d.setWidthResolution(widthResolution);
+  postScan2d.setHeightResolution(heightResolution);
   postScan2d.setData(I);
 }
