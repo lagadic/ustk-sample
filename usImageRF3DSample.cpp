@@ -29,6 +29,7 @@
 *
 *****************************************************************************/
 
+#include <visp3/ustk_core/usImage3D.h>
 #include <visp3/ustk_core/usImageRF3D.h>
 
 int main()
@@ -63,7 +64,6 @@ int main()
   usImage3D<unsigned char> I(RFSampleNumber, scanLineNumber, frameNumber);
 
   usImageRF3D<unsigned char> rf3d;
-  rf3d.setData(I);
   rf3d.setImagePreScanSettings(imagePreScanSettings);
   rf3d.setMotorSettings(motorSettings);
 }

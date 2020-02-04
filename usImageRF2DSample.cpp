@@ -31,6 +31,7 @@
 
 
 #include <visp3/ustk_core/usImageRF2D.h>
+#include <visp3/core/vpImage.h>
 
 int main()
 {
@@ -49,5 +50,4 @@ int main()
   rf2d.setScanLineNumber(scanLineNumber);
   rf2d.setTransducerConvexity(isTransducerConvex);
   rf2d.setAxialResolution(axialResolution);
-  rf2d.setData(I);
 }
