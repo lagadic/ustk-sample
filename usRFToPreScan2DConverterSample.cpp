@@ -29,10 +29,14 @@
  *
  *****************************************************************************/
 
+#include <visp3/core/vpImage.h>
 #include <visp3/ustk_core/usRFToPreScan2DConverter.h>
+#include <visp3/ustk_core/usImageRF2D.h>
+#include <visp3/ustk_core/usImagePreScan2D.h>
 
 int main()
 {
+#if defined(USTK_HAVE_FFTW)
   // 2D post-scan image settings
   unsigned int width = 320;
   unsigned int height = 240;
@@ -53,6 +57,6 @@ int main()
   usImagePreScan2D<unsigned char> prescanImage; // output
   usRFToPreScan2DConverter converter;
   converter.convert(rfImage,prescanImage);
-
+#endif
   return 0;
 }
