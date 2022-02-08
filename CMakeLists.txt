@@ -4,8 +4,15 @@ cmake_minimum_required(VERSION 3.0)
 
 find_package(VISP REQUIRED)
 if(VISP_FOUND)
-	include_directories(${VISP_INCLUDE_DIRS})
-	include_directories(${USTK_INCLUDE_DIR})	
+  include_directories(${VISP_INCLUDE_DIRS})
+  include_directories(${USTK_INCLUDE_DIR})
+endif()
+
+#--------------------------------------------------------------------
+# By default set release configuration
+#--------------------------------------------------------------------
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build, options are: None Debug Release" FORCE)
 endif()
 
 add_executable(usImagePreScan2DSample usImagePreScan2DSample.cpp)
