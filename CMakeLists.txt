@@ -1,6 +1,6 @@
-project(ustk_sample)
+cmake_minimum_required(VERSION 3.10)
 
-cmake_minimum_required(VERSION 3.0)
+project(ustk_sample)
 
 find_package(VISP REQUIRED)
 if(VISP_FOUND)
