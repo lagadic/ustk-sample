@@ -30,6 +30,11 @@
  *****************************************************************************/
 
 #include <visp3/ustk_core/usPreScanToPostScan2DConverter.h>
+#include <visp3/core/vpConfig.h>
+
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
 
 int main()
 {
@@ -55,7 +60,7 @@ int main()
   // converter output
   usImagePostScan2D<unsigned char> postScan;
   usPreScanToPostScan2DConverter scanConverter;
-  scanConverter.convert(preScan,postScan,0.0005,0.0005); // now postScan is filled from preScan, with pixels of 0.5mm
+  scanConverter.convert(preScan, postScan, 0.0005, 0.0005); // now postScan is filled from preScan, with pixels of 0.5mm
 
   return 0;
 }

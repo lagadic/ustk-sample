@@ -29,10 +29,15 @@
  *
  *****************************************************************************/
 
+#include <visp3/core/vpConfig.h>
 #include <visp3/core/vpImage.h>
 #include <visp3/ustk_core/usRFToPreScan2DConverter.h>
 #include <visp3/ustk_core/usImageRF2D.h>
 #include <visp3/ustk_core/usImagePreScan2D.h>
+
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
 
 int main()
 {
@@ -56,7 +61,7 @@ int main()
 
   usImagePreScan2D<unsigned char> prescanImage; // output
   usRFToPreScan2DConverter converter;
-  converter.convert(rfImage,prescanImage);
+  converter.convert(rfImage, prescanImage);
 #endif
   return 0;
 }

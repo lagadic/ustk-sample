@@ -29,10 +29,15 @@
  *
  *****************************************************************************/
 
+#include <visp3/core/vpConfig.h>
 #include <visp3/core/vpImage.h>
 #include <visp3/ustk_core/usRFToPostScan2DConverter.h>
 #include <visp3/ustk_core/usImageRF2D.h>
 #include <visp3/ustk_core/usImagePostScan2D.h>
+
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
 
 int main()
 {
@@ -58,8 +63,8 @@ int main()
   postscanImage.setHeightResolution(0.0005);
   postscanImage.setWidthResolution(0.0005); // pixels of 0.5*0.5 mm in output
   usRFToPostScan2DConverter converter;
-  converter.setConversionParameters(postscanImage,rfImage.getRFSampleNumber()/10,rfImage.getScanLineNumber(),10);
-  converter.convert(rfImage,postscanImage);
+  converter.setConversionParameters(postscanImage, rfImage.getRFSampleNumber()/10, rfImage.getScanLineNumber(), 10);
+  converter.convert(rfImage, postscanImage);
 #endif
 
   return 0;

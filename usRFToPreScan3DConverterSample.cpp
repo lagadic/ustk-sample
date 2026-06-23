@@ -49,7 +49,7 @@ int main()
   double framePitch = 0.002;
   double motorRadius = 0.04;
 
-  usImage3D<short int> I(height, width,frames);
+  usImage3D<short int> I(height, width, frames);
   usImageRF3D<short int> rfImage; // to fill (image + settings)
   rfImage.setTransducerRadius(transducerRadius);
   rfImage.setScanLinePitch(scanLinePitch);
